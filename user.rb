@@ -24,9 +24,16 @@ class User
     Process.kill 'INT', Process.pid
   end
 
-  def gets
+  def gets(default='')
     Readline.input = stdin
-    Readline.readline '> ', true
+    thread = Thread.new do
+      Thread.current.abort_on_exception = true
+      Readline.readline '> ', true
+    end
+    Thread.pass until thread.status == 'sleep'
+    Readline.insert_text default
+    Readline.refresh_line
+    thread.value
   end
 
   def puts(*messages)
