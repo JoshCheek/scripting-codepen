@@ -78,7 +78,7 @@ state.each_pen do |index:, href:, evaluated:, added:|
 
   browser.click '#item-settings-modal input.save-and-close'
   state.update_pen href, evaluated: true, added: true
-  user.press_any_key '\tPress any key to go to the next pen'
+  user.press_any_key "\tPress any key to go to the next pen"
   # browser.click '#run' # sigh, this can fail b/c the overlay is still on top of it
 end
 
