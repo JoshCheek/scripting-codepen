@@ -30,10 +30,10 @@ user.heading 'First getting the list of pens'
 
 if !state.pens_loaded? || !user.ask("You already have #{state.num_pens} saved, use these?")
   browser.visit 'https://codepen.io/pens/mypens/'
-  sleep 2 # idk, sometimes it takes too long to put the content on the page -.-
   state.clear_pens
 
   loop do
+    sleep 1 # idk, sometimes it takes too long to put the content on the page -.-
     hrefs = browser.all('.single-pen a.cover-link') { |a| a[:href] }
     state.add_pens hrefs
     puts hrefs
